@@ -11,13 +11,7 @@
 └── README.md
 ```
 
-## <u> Optimization Foundations </u>
-
-This repository includes implementations and explanations of various optimization techniques commonly used in machine learning.
-
-Each optimization technique in this repository is explained in detail along with code examples.
-
-For a deeper understanding of each method, refer to the corresponding folders in this directory.
+## <u> Statistical Learning </u>
 
 ### 01-LinearRegression
 
