@@ -17,22 +17,17 @@ y_test = y_test.reshape(-1,1)
 w = np.zeros(X.shape[1]).reshape(-1,1)
 
 loss_history = []
-w_history = np.zeros((500,X.shape[1]))
+w_history = np.zeros((1000,X.shape[1]))
 
-def sign(w):
-    w[w>0] = 1
-    w[w<0] = -1
-    return w
+penalty = 1
 
-penalty = 0.4
-
-for epoch in range(500):
+for epoch in range(1000):
     y_pred_train = X_train @ w
-    loss = (1/len(y_train)) * np.linalg.norm(y_train - y_pred_train) ** 2 + (penalty * np.linalg.norm(w, ord= 1))
+    loss = (1/len(y_train)) * np.linalg.norm(y_train - y_pred_train) ** 2 + (penalty * np.linalg.norm(w, ord= 2) ** 2)
     loss_history.append(loss)
     w_history[epoch] += w.reshape(X.shape[1])
-    gradient = X_train.T @ (y_train - y_pred_train) - (penalty * sign(w)) 
-    w += 1e-3 * gradient 
+    gradient = X_train.T @ (y_train - y_pred_train) - (penalty * 2 * w) 
+    w += 1e-4 * gradient 
     print(w)
 
 def rsquared(y_true, y_pred):

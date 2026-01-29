@@ -24,9 +24,9 @@ y_train = y_train.reshape(-1, 1)
 y_test = y_test.reshape(-1, 1)
 w = np.zeros(X.shape[1])
 
-U, sigma, V = np.linalg.svd(X_train, full_matrices=False)
+Q, R = np.linalg.qr(X_train)
 
-w = V.T @ np.diag(1 / sigma) @ U.T @ y_train
+w = np.linalg.inv(R) @ Q.T @ y_train
 
 y_pred = X_test @ w
 
